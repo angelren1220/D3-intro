@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D3 Example</title>
+</head>
+
+<body>
+
+  <!-- Link to D3.js Library -->
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+
+  <!-- Inline JavaScript Code -->
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      .text((d) => (d + " USD"))
+      .style("color", (d) => {
+        return d < 20 ? "red" : "green";
+      });
+  </script>
+
+  <!-- Link to Your External JS File -->
+  <!-- <script src="script.js"></script> -->
+
+</body>
+
+</html>
