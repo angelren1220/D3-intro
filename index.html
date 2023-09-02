@@ -7,6 +7,16 @@
   <title>D3 Example</title>
 </head>
 
+<style>
+  .bar {
+    width: 25px;
+    height: 100px;
+    margin: 2px;
+    display: inline-block;
+    background-color: blue;
+  }
+</style>
+
 <body>
 
   <!-- Link to D3.js Library -->
@@ -24,6 +34,13 @@
       .style("color", (d) => {
         return d < 20 ? "red" : "green";
       });
+
+      d3.select("body").selectAll("div")
+      .data(dataset)
+      .enter()
+      .append("div")
+      .attr("class", "bar")
+      .style("height", (d) => (10 * d + "px"))
   </script>
 
   <!-- Link to Your External JS File -->
