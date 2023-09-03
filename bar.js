@@ -21,10 +21,11 @@ barSvg.selectAll("rect")
   .append("title")
   .text((d) => (d));
 
-  barSvg.selectAll("text")
+  barSvg.selectAll(".barLabel")
   .data(barDataset)
   .enter()
   .append("text")
+  .attr("class", "barLabel")
   .attr("x", (d, i) => i * 30)
   .attr("y", (d, i) => bh - d * 3 - 3)
   .text((d) => (d));
