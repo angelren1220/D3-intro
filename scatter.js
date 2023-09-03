@@ -16,6 +16,8 @@ const sw = 500;
 const sh = 500;
 const padding = 60;
 
+
+// scales
 const xScale = d3.scaleLinear()
   .domain([0, d3.max(scatterDataset, (d) => d[0])])
   .range([padding, sw - padding]);
@@ -24,11 +26,25 @@ const yScale = d3.scaleLinear()
   .domain([0, d3.max(scatterDataset, (d) => d[1])])
   .range([sh - padding, padding]);
 
+// axis
+const xAxis = d3.axisBottom(xScale);
+const yAxis = d3.axisLeft(yScale);
+
+// plot area
 const scatterSvg = d3.select("#scatterContainer")
   .append("svg")
   .attr("width", sw)
   .attr("height", sh);
 
+// plot axis with scales
+scatterSvg.append("g")
+  .attr("transform", "translate(0," + (sh - padding) + ")")
+  .call(xAxis);
+scatterSvg.append("g")
+  .attr("transform", "translate(" + padding + "," + 0 + ")")
+  .call(yAxis);
+
+// plot data points
 scatterSvg.selectAll("circle")
   .data(scatterDataset)
   .enter()
@@ -37,11 +53,12 @@ scatterSvg.selectAll("circle")
   .attr("cy", (d) => yScale(d[1]))
   .attr("r", 5);
 
+// plot data labels
 scatterSvg.selectAll(".scatterLabel")
   .data(scatterDataset)
   .enter()
   .append("text")
   .attr("class", "scatterLabel")
   .text((d) => (d[0] + ", " + d[1]))
-  .attr("x", (d, i) => xScale(d[0] + 10))
-  .attr("y", (d, i) => yScale(d[1]));
+  .attr("x", (d) => xScale(d[0] + 10))
+  .attr("y", (d) => yScale(d[1]));
