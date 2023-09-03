@@ -5,61 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>D3 Example</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
-<style>
-  svg {
-    background-color: pink;
-  }
-
-  .bar:hover {
-    fill: lightblue;
-  }
-</style>
 
 <body>
 
   <!-- Link to D3.js Library -->
   <script src="https://d3js.org/d3.v6.min.js"></script>
-
-  <!-- Inline JavaScript Code -->
-  <script>
-    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
-
-    const w = 500;
-    const h = 150;
-
-    const svg = d3.select("body")
-      .append("svg")
-      .attr("width", w)
-      .attr("height", h);
-
-    svg.selectAll("rect")
-      .data(dataset)
-      .enter()
-      .append("rect")
-      .attr("x", (d, i) => i * 30)
-      .attr("y", (d, i) => h - d * 3)
-      .attr("width", 25)
-      .attr("height", (d, i) => 3 * d)
-      .attr("fill", "navy")
-      .attr("class", "bar")
-      .append("title")
-      .text((d) => (d));
-
-    svg.selectAll("text")
-      .data(dataset)
-      .enter()
-      .append("text")
-      .attr("x", (d, i) => i * 30)
-      .attr("y", (d, i) => h - d * 3 - 3)
-      .text((d) => (d))
-
-  </script>
-
-  <!-- Link to Your External JS File -->
-  <!-- <script src="script.js"></script> -->
-
+  <div id="barContainer">
+    <script src="bar.js"></script>
+  </div>
+  <div id="scatterContainer">
+    <script src="scatter.js"></script>
+  </div>
+  
 </body>
 
 </html>
