@@ -11,6 +11,10 @@
   svg {
     background-color: pink;
   }
+
+  .bar:hover {
+    fill: lightblue;
+  }
 </style>
 
 <body>
@@ -23,7 +27,7 @@
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
     const w = 500;
-    const h = 100;
+    const h = 150;
 
     const svg = d3.select("body")
       .append("svg")
@@ -38,7 +42,10 @@
       .attr("y", (d, i) => h - d * 3)
       .attr("width", 25)
       .attr("height", (d, i) => 3 * d)
-      .attr("fill", "navy");
+      .attr("fill", "navy")
+      .attr("class", "bar")
+      .append("title")
+      .text((d) => (d));
 
     svg.selectAll("text")
       .data(dataset)
