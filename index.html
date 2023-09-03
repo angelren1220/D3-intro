@@ -8,12 +8,8 @@
 </head>
 
 <style>
-  .bar {
-    width: 25px;
-    height: 100px;
-    margin: 2px;
-    display: inline-block;
-    background-color: blue;
+  svg {
+    background-color: pink;
   }
 </style>
 
@@ -26,6 +22,14 @@
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
+
     d3.select("body").selectAll("h2")
       .data(dataset)
       .enter()
@@ -35,12 +39,15 @@
         return d < 20 ? "red" : "green";
       });
 
-      d3.select("body").selectAll("div")
+    svg.selectAll("rect")
       .data(dataset)
       .enter()
-      .append("div")
-      .attr("class", "bar")
-      .style("height", (d) => (10 * d + "px"))
+      .append("rect")
+      .attr("x", (d, i) => i * 30)
+      .attr("y", (d, i) =>
+        h - d * 3)
+      .attr("width", 25)
+      .attr("height", (d, i) => 3 * d);
   </script>
 
   <!-- Link to Your External JS File -->
